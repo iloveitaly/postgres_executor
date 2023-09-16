@@ -3,6 +3,6 @@ defmodule PostgresExecutorTest do
   doctest PostgresExecutor
 
   test "greets the world" do
-    assert PostgresExecutor.hello() == :world
+    assert PostgresExecutor.execute_sql_file() == :world
   end
 end

@@ -1,4 +1,4 @@
-# PostgresExecutor for Elixir
+# Postgres Raw SQL Executor for Elixir
 
 A simple utility to execute SQL files against a Postgres database using the `psql` command-line interface. Useful when you need to execute multi-statement SQL. More information in this blog post (TODO).
 

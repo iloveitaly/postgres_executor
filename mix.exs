@@ -7,6 +7,14 @@ defmodule PostgresExecutor.MixProject do
       version: "0.2.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
+      description:
+        "An Elixir utility to execute SQL files on Postgres using psql CLI, supporting multi-statement SQL with mock testing capabilities",
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/iloveitlay/postgres_executor"
+      },
+
+      # Add this line. Adjust the link accordingly.
       test_coverage: [tool: ExCoveralls],
       deps: deps()
     ]

@@ -111,6 +111,9 @@ jobs:
         if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
       - run: mix hex.publish --yes
         if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
+        env:
+          # `gh secret set HEX_API_KEY --app actions --body $HEX_API_KEY`
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
 
       - name: Github Release
         if: ${{ matrix.lint && steps.changelog.outputs.skipped == 'false' }}

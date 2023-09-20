@@ -1,1 +1,1 @@
-DROP SCHEMA audit;
+DROP SCHEMA audit CASCADE;

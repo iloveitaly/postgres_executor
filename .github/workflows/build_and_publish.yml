@@ -1,0 +1,93 @@
+# base configuration pulled from:
+# https://github.com/dashbitco/broadway/blob/master/.github/workflows/ci.yml
+
+name: Build & Publish
+
+on:
+  pull_request:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+
+    services:
+      postgres:
+        image: postgis/postgis:15-3.4
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MIX_ENV: test
+
+    name: Test Elixir ${{ matrix.elixir }}, OTP ${{ matrix.otp }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+        elixir: ["1.15", "1.14", "1.13"]
+        otp: ["26", "25"]
+        exclude:
+          - elixir: "1.13"
+            otp: "26"
+        include:
+          - elixir: "1.15"
+            otp: "26"
+            coverage: coverage
+            lint: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+
+      - name: Restore Dependency Cache
+        uses: actions/cache@v3
+        id: cache-deps
+        with:
+          path: |
+            deps
+            _build
+          key: |
+            mix-${{ runner.os }}-${{matrix.elixir}}-${{matrix.otp}}-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            mix-${{ runner.os }}-${{matrix.elixir}}-${{matrix.otp}}-
+
+      - name: Check for unused deps
+        run: mix deps.unlock --check-unused
+        if: ${{matrix.lint}}
+
+      - run: mix format --check-formatted
+        if: ${{matrix.lint}}
+
+      - name: Check for abandonded packaged
+        run: mix hex.audit
+        if: ${{matrix.lint}}
+
+      - run: mix deps.get --only test
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+      - run: mix deps.compile --warnings-as-errors
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+
+      - name: Set up database
+        run: |
+          PGPASSWORD=postgres psql -c 'create database postgres_test;' -U postgres -h localhost -p 5432
+
+      - run: mix test
+
+      - run: mix coveralls.github
+        if: ${{matrix.lint}}
+
+      # TODO conventional commits
+      # TODO build and release

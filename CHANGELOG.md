@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/iloveitaly/postgres_executor/compare/v0.2.1...v0.2.2) (2023-09-20)
+
+
+### Bug Fixes
+
+* adding package() function for important metadata ([cf2b4c8](https://github.com/iloveitaly/postgres_executor/commit/cf2b4c803c4ce33ca2879460f63a7c166995bef3))
+
+
+
 ## [0.2.1](https://github.com/iloveitaly/postgres_executor/compare/v0.2.0...v0.2.1) (2023-09-20)
 
 

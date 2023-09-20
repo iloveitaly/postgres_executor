@@ -93,6 +93,8 @@ jobs:
 
       - run: mix coveralls.github
         if: ${{matrix.lint}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Changelog
         if: ${{matrix.lint}}

@@ -33,6 +33,12 @@ Make sure you have `psql` command-line utility installed and accessible from you
 
 Mocking has been set up for easy testing. Use the included mock utilities to write your tests without actually hitting a Postgres database.
 
+To update the audit trigger SQL:
+
+```shell
+http https://raw.githubusercontent.com/iloveitaly/audit-trigger/master/audit.sql > test/audit_trigger.sql
+```
+
 ## Contributing
 
 1. Fork the repository on GitHub.

@@ -6,7 +6,7 @@ defmodule PostgresExecutorTest do
     assert {:ok, output} =
              PostgresExecutor.execute_sql_file(
                "postgres://postgres:postgres@localhost:5432/postgres_test",
-               "priv/some.sql"
+               "test/audit_trigger.sql"
              )
   end
 end

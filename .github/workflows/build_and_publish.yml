@@ -69,6 +69,11 @@ jobs:
           restore-keys: |
             mix-${{ runner.os }}-${{matrix.elixir}}-${{matrix.otp}}-
 
+      - run: mix deps.get --only test
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+      - run: mix deps.compile --warnings-as-errors
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+
       - name: Check for unused deps
         run: mix deps.unlock --check-unused
         if: ${{matrix.lint}}
@@ -79,11 +84,6 @@ jobs:
       - name: Check for abandonded packaged
         run: mix hex.audit
         if: ${{matrix.lint}}
-
-      - run: mix deps.get --only test
-        if: steps.cache-deps.outputs.cache-hit != 'true'
-      - run: mix deps.compile --warnings-as-errors
-        if: steps.cache-deps.outputs.cache-hit != 'true'
 
       - name: Set up database
         run: |

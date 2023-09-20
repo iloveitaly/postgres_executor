@@ -22,7 +22,8 @@ defmodule PostgresExecutor.MixProject do
 
   defp deps do
     [
-      {:excoveralls, "~> 0.17.1", only: :test}
+      {:excoveralls, "~> 0.17.1", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 

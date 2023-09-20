@@ -22,8 +22,8 @@ jobs:
 
     services:
       postgres:
-        # replace with `postgis/postgis:`
-        image: postgres:15-3.4
+        # replace with `postgis/postgis:`, use dashes instead of dots for version
+        image: postgres:15.3
         ports:
           - 5432:5432
         env:

@@ -5,12 +5,6 @@ defmodule PostgresExecutor do
 
   @doc """
   Executes an arbitrary SQL file against a Postgres database using the CLI `psql` command.
-
-  ## Examples
-
-      iex> PostgresExecutor.execute_sql_file("postgres://postgres:postgres@localhost:5432/mydb", "priv/some.sql")
-      {ok, "..."}
-
   """
   def execute_sql_file(database_url, file_path)
       when is_binary(database_url) and is_binary(file_path) do

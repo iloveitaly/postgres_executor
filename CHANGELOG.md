@@ -1,3 +1,12 @@
+## [0.2.4](https://github.com/iloveitaly/postgres_executor/compare/v0.2.3...v0.2.4) (2023-09-20)
+
+
+### Bug Fixes
+
+* automated build pushes should be fixed ([8751e04](https://github.com/iloveitaly/postgres_executor/commit/8751e04c80d7abe29049aa57901a51949d1e6ff0))
+
+
+
 ## [0.2.3](https://github.com/iloveitaly/postgres_executor/compare/v0.2.2...v0.2.3) (2023-09-20)
 
 

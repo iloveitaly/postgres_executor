@@ -9,6 +9,13 @@ on:
     branches:
       - "*"
 
+# by default, permissions are read-only, read + write is required for git pushes
+permissions:
+  contents: write
+
+env:
+  MIX_ENV: test
+
 jobs:
   test:
     runs-on: "ubuntu-latest"
@@ -26,9 +33,6 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-
-    env:
-      MIX_ENV: test
 
     name: Test Elixir ${{ matrix.elixir }}, OTP ${{ matrix.otp }}
     strategy:
@@ -89,5 +93,27 @@ jobs:
       - run: mix coveralls.github
         if: ${{matrix.lint}}
 
+      - name: Build Changelog
+        if: ${{matrix.lint}}
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v4
+        with:
+          github-token: ${{ secrets.github_token }}
+          version-file: "./mix.exs"
+          fallback-version: "0.1.0"
+          output-file: "CHANGELOG.md"
+
+      - run: mix hex.build
+        if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
+      - run: mix hex.publish --yes
+        if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
+
+      - name: Github Release
+        if: ${{ matrix.lint && steps.changelog.outputs.skipped == 'false' }}
+        uses: softprops/action-gh-release@v1
+        with:
+          # output options: https://github.com/TriPSs/conventional-changelog-action#outputs
+          body: ${{ steps.changelog.outputs.clean_changelog }}
+          tag_name: ${{ steps.changelog.outputs.tag }}
       # TODO conventional commits
       # TODO build and release

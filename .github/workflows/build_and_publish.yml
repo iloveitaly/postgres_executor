@@ -107,11 +107,13 @@ jobs:
           version-file: "./mix.exs"
           output-file: "CHANGELOG.md"
 
-      - run: mix hex.build
-        if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
-      - run: mix hex.publish --yes
+      - name: Build & Publish
+        run: |
+          mix hex.build
+          mix hex.publish --yes
         if: ${{matrix.lint && steps.changelog.outputs.skipped == 'false'}}
         env:
+          MIX_ENV: dev
           # `gh secret set HEX_API_KEY --app actions --body $HEX_API_KEY`
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
 

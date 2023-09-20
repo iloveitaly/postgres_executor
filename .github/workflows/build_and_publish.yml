@@ -103,8 +103,8 @@ jobs:
         uses: iloveitaly/conventional-changelog-action@elixir-support
         with:
           github-token: ${{ secrets.github_token }}
-          version-file: "./mix.exs"
           fallback-version: "0.1.0"
+          version-file: "./mix.exs"
           output-file: "CHANGELOG.md"
 
       - run: mix hex.build

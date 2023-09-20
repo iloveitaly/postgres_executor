@@ -1,4 +1,13 @@
-# 0.2.0 (2023-09-20)
+## [0.2.1](https://github.com/iloveitaly/postgres_executor/compare/v0.2.0...v0.2.1) (2023-09-20)
+
+
+### Bug Fixes
+
+* adding missing metadata fields ([67bbab9](https://github.com/iloveitaly/postgres_executor/commit/67bbab9523352ce3c2ae0bb07bfc1655bf8b926e))
+
+
+
+# [0.2.0](https://github.com/iloveitaly/postgres_executor/compare/2d3338b31153a8bc37d6532b1e5d69845672d7db...v0.2.0) (2023-09-20)
 
 
 ### Features

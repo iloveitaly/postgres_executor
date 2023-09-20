@@ -1,3 +1,9 @@
+[![Module Version](https://img.shields.io/hexpm/v/postgres_executor.svg)](https://hex.pm/packages/postgres_executor)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/postgres_executor/)
+[![Total Download](https://img.shields.io/hexpm/dt/postgres_executor.svg)](https://hex.pm/packages/postgres_executor)
+[![License](https://img.shields.io/hexpm/l/postgres_executor.svg)](https://github.com/iloveitaly/postgres_executor/blob/master/LICENSE.md)
+![github actions badge](https://github.com/iloveitaly/postgres_executor/actions/workflows/build_and_publish.yml/badge.svg)
+
 # Postgres Raw SQL Executor for Elixir
 
 A simple utility to execute SQL files against a Postgres database using the `psql` command-line interface. Useful when you need to execute multi-statement SQL. More information in this blog post (TODO).

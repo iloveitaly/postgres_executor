@@ -2,6 +2,8 @@
 
 A simple utility to execute SQL files against a Postgres database using the `psql` command-line interface. Useful when you need to execute multi-statement SQL. More information in this blog post (TODO).
 
+The most interesting piece of this repo is probably the [GitHub actions build yml](.github/workflows/build_and_publish.yml) which has a bunch of interesting stuff.
+
 ## Installation
 
 1. Add `postgres_executor` to your list of dependencies in `mix.exs`:

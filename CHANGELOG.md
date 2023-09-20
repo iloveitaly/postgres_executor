@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/iloveitaly/postgres_executor/compare/v0.2.2...v0.2.3) (2023-09-20)
+
+
+### Bug Fixes
+
+* use hex api key ([ed31962](https://github.com/iloveitaly/postgres_executor/commit/ed31962379a0ec429f273c1df0092ca5b6ac061a))
+
+
+
 ## [0.2.2](https://github.com/iloveitaly/postgres_executor/compare/v0.2.1...v0.2.2) (2023-09-20)
 
 

@@ -99,7 +99,8 @@ jobs:
       - name: Build Changelog
         if: ${{matrix.lint}}
         id: changelog
-        uses: TriPSs/conventional-changelog-action@v4
+        # uses: TriPSs/conventional-changelog-action@v4
+        uses: TriPSs/conventional-changelog-action@elixir-support
         with:
           github-token: ${{ secrets.github_token }}
           version-file: "./mix.exs"
@@ -118,5 +119,3 @@ jobs:
           # output options: https://github.com/TriPSs/conventional-changelog-action#outputs
           body: ${{ steps.changelog.outputs.clean_changelog }}
           tag_name: ${{ steps.changelog.outputs.tag }}
-      # TODO conventional commits
-      # TODO build and release

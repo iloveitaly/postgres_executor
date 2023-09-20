@@ -9,7 +9,7 @@ A simple utility to execute SQL files against a Postgres database using the `psq
 ```elixir
 def deps do
   [
-    {:postgres_executor, "~> 0.1.0"}
+    {:postgres_executor, "~> 0.2.0"}
   ]
 end
 ```
